@@ -1,4 +1,5 @@
 import { Navbar } from "@/components/layout/navbar";
+import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
 import type { Metadata } from "next";
@@ -29,6 +30,7 @@ export default function RootLayout({
         <div className="container mx-auto h-full max-w-xl pt-12">
           {children}
         </div>
+        <Toaster />
       </body>
     </html>
   );

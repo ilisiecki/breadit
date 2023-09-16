@@ -54,3 +54,7 @@ export function formatTimeToNow(date: Date): string {
     },
   });
 }
+
+export function timeout(delay: number) {
+  return new Promise((res) => setTimeout(res, delay));
+}

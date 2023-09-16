@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { LogoBreadit } from "../icons/logo-breadit";
+import { LogoBreadit } from "@/components/icons/logo-breadit";
+import { buttonVariants } from "@/components/ui/button";
 
 export function Navbar() {
   return (
@@ -10,6 +11,10 @@ export function Navbar() {
           <p className="hidden text-sm font-medium text-neutral-700 md:block">
             Breadit
           </p>
+        </Link>
+        {/*search bar here later*/}
+        <Link href="/sign-in" className={buttonVariants()}>
+          Sign In
         </Link>
       </div>
     </div>
