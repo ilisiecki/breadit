@@ -25,18 +25,15 @@ export const authConfig: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    session({ session, token }) {
-      return {
-        ...session,
-        user: {
-          ...session.user,
-          id: token.id,
-          name: token.name,
-          email: token.email,
-          image: token.picture,
-          username: token.username,
-        },
-      };
+    async session({ session, token }) {
+      if (token) {
+        session.user.id = token.id;
+        session.user.name = token.name;
+        session.user.email = token.email;
+        session.user.image = token.picture;
+        session.user.username = token.username;
+      }
+      return session;
     },
 
     async jwt({ token, user }) {
@@ -70,8 +67,10 @@ export const authConfig: NextAuthOptions = {
         username: dbUser.username,
       };
     },
-    redirect() {
-      return "/";
+    async redirect({ url, baseUrl }) {
+      if (url.startsWith("/")) return `${baseUrl}${url}`;
+      else if (new URL(url).origin === baseUrl) return url;
+      return baseUrl;
     },
   },
 };

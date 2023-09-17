@@ -1,8 +1,12 @@
 import Link from "next/link";
 import { LogoBreadit } from "@/components/icons/logo-breadit";
 import { buttonVariants } from "@/components/ui/button";
+import { getAuthSession } from "@/lib/auth";
+import { UserAccountDropdown } from "./user-account-dropdown";
 
-export function Navbar() {
+export async function Navbar() {
+  const session = await getAuthSession();
+
   return (
     <div className="fixed inset-x-0 top-0 z-10 h-fit border-b border-neutral-300 bg-neutral-100 py-2">
       <div className="container mx-auto flex h-full max-w-7xl items-center justify-between gap-2">
@@ -13,9 +17,13 @@ export function Navbar() {
           </p>
         </Link>
         {/*search bar here later*/}
-        <Link href="/sign-in" className={buttonVariants()}>
-          Sign In
-        </Link>
+        {session?.user ? (
+          <UserAccountDropdown user={session.user} />
+        ) : (
+          <Link href="/sign-in" className={buttonVariants()}>
+            Sign In
+          </Link>
+        )}
       </div>
     </div>
   );

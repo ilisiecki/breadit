@@ -9,9 +9,12 @@ import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
 import { LogoGithub } from "../icons/logo-github";
 
-interface Props extends React.HtmlHTMLAttributes<HTMLDivElement> {}
-
-export function UserAuthForm({ className, ...props }: { className?: Props }) {
+export function UserAuthForm({
+  className,
+  ...props
+}: {
+  className?: React.HtmlHTMLAttributes<HTMLDivElement>;
+}) {
   const [isLoadingGoogle, setIsLoadingGoogle] = useState(false);
   const [isLoadingGithub, setIsLoadingGithub] = useState(false);
   const { toast } = useToast();
