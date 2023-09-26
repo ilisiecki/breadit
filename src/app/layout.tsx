@@ -1,4 +1,5 @@
 import { Navbar } from "@/components/layout/navbar";
+import Providers from "@/components/providers";
 import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
@@ -28,12 +29,14 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-screen bg-neutral-50 pt-12 antialiased">
-        <Navbar />
-        {authModal}
-        <div className="container mx-auto h-full max-w-xl pt-12">
-          {children}
-        </div>
-        <Toaster />
+        <Providers>
+          <Navbar />
+          {authModal}
+          <div className="container mx-auto h-full max-w-xl pt-12">
+            {children}
+          </div>
+          <Toaster />
+        </Providers>
       </body>
     </html>
   );
